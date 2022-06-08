@@ -9,16 +9,21 @@ public class OperationFactory {
 
   final DepositOperation depositOperation;
   final EmptyOperation emptyOperation;
+  final WithdrawalOperation withdrawalOperation;
 
-  public OperationFactory(DepositOperation depositOperation, EmptyOperation emptyOperation) {
+  public OperationFactory(final DepositOperation depositOperation,
+      final EmptyOperation emptyOperation, final WithdrawalOperation withdrawalOperation) {
     this.depositOperation = depositOperation;
     this.emptyOperation = emptyOperation;
+    this.withdrawalOperation = withdrawalOperation;
   }
 
   public Operation getOperation(TransactionType transactionType) {
     switch (transactionType) {
       case DEPOSIT:
         return depositOperation;
+      case WITHDRAWL:
+        return withdrawalOperation;
       default:
         return emptyOperation;
     }

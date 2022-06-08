@@ -13,8 +13,14 @@ public class AccountServiceImpl implements AccountService {
   private OperationFactory operationFactory;
 
   @Override
-  public Transaction deposit(UUID accountId, BigDecimal amount) {
+  public Transaction deposit(final UUID accountId, final BigDecimal amount) {
     Operation op = operationFactory.getOperation(TransactionType.DEPOSIT);
+    return op.operate(accountId, amount);
+  }
+
+  @Override
+  public Transaction withdrawal(final UUID accountId,final BigDecimal amount) {
+    Operation op = operationFactory.getOperation(TransactionType.WITHDRAWL);
     return op.operate(accountId, amount);
   }
 
